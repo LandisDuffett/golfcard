@@ -78,12 +78,15 @@ namespace golfcard.Models
         Console.Write($"Hole: {i}\n");
         for (int x = 0; x < Golfers.Count; x++)
         {
-          Console.Write($"Strokes for {Golfers[x].Name}: ");
-          string strokes = Console.ReadLine();
-          if (Int32.TryParse(strokes, out int strokeno))
+          string strokes;
+          int strokeno;
+          do
           {
-            Golfers[x].EachPar.Add(strokeno);
+            Console.Write($"Strokes for {Golfers[x].Name}: ");
+            strokes = Console.ReadLine();
           }
+          while (!Int32.TryParse(strokes, out strokeno));
+          Golfers[x].EachPar.Add(strokeno);
         }
         Console.Clear();
       }
