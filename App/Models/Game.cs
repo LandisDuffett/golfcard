@@ -80,15 +80,9 @@ namespace golfcard.Models
         {
           Console.Write($"Strokes for {Golfers[x].Name}: ");
           string strokes = Console.ReadLine();
-          if (Int32.TryParse(strokes, out int strokeno))
+          while (Int32.TryParse(strokes, out int strokeno))
           {
             Golfers[x].EachPar.Add(strokeno);
-          }
-          else
-          {
-            Console.WriteLine("Invalid entry. Your entry must be an integer. Start over.");
-            Golfers.Clear();
-            return;
           }
         }
         Console.Clear();
