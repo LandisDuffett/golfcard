@@ -1,0 +1,16 @@
+C:\Users\ldavd\code\apps\golfcard\bin\Debug\net5.0\golfcard.exe
+C:\Users\ldavd\code\apps\golfcard\bin\Debug\net5.0\golfcard.deps.json
+C:\Users\ldavd\code\apps\golfcard\bin\Debug\net5.0\golfcard.runtimeconfig.json
+C:\Users\ldavd\code\apps\golfcard\bin\Debug\net5.0\golfcard.runtimeconfig.dev.json
+C:\Users\ldavd\code\apps\golfcard\bin\Debug\net5.0\golfcard.dll
+C:\Users\ldavd\code\apps\golfcard\bin\Debug\net5.0\ref\golfcard.dll
+C:\Users\ldavd\code\apps\golfcard\bin\Debug\net5.0\golfcard.pdb
+C:\Users\ldavd\code\apps\golfcard\obj\Debug\net5.0\golfcard.csprojAssemblyReference.cache
+C:\Users\ldavd\code\apps\golfcard\obj\Debug\net5.0\golfcard.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ldavd\code\apps\golfcard\obj\Debug\net5.0\golfcard.AssemblyInfoInputs.cache
+C:\Users\ldavd\code\apps\golfcard\obj\Debug\net5.0\golfcard.AssemblyInfo.cs
+C:\Users\ldavd\code\apps\golfcard\obj\Debug\net5.0\golfcard.csproj.CoreCompileInputs.cache
+C:\Users\ldavd\code\apps\golfcard\obj\Debug\net5.0\golfcard.dll
+C:\Users\ldavd\code\apps\golfcard\obj\Debug\net5.0\ref\golfcard.dll
+C:\Users\ldavd\code\apps\golfcard\obj\Debug\net5.0\golfcard.pdb
+C:\Users\ldavd\code\apps\golfcard\obj\Debug\net5.0\golfcard.genruntimeconfig.cache

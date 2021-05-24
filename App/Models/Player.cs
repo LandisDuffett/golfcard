@@ -1,20 +1,25 @@
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace golfcard.Models
 {
   class Player
   {
     public string Name { get; set; }
-    public int Score { get; set; }
-    public void addScore(int round)
+    public int TotalScore { get; set; }
+    public int StrokeTotal()
     {
-      Score += round;
+      int total = (from num in EachPar select num).Sum();
+      return total;
     }
+    public List<int> EachPar { get; set; }
 
-    public Player(string name)
+    public Player(string name, List<int> eachpar)
     {
       Name = name;
-      Score = 0;
+      EachPar = eachpar;
+      TotalScore = 0;
     }
   }
 }
