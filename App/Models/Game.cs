@@ -80,7 +80,7 @@ namespace golfcard.Models
         {
           Console.Write($"Strokes for {Golfers[x].Name}: ");
           string strokes = Console.ReadLine();
-          while (Int32.TryParse(strokes, out int strokeno))
+          if (Int32.TryParse(strokes, out int strokeno))
           {
             Golfers[x].EachPar.Add(strokeno);
           }
