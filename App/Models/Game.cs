@@ -8,9 +8,7 @@ namespace golfcard.Models
   {
     List<Player> Golfers { get; set; }
     List<Course> Courses { get; set; }
-
-    List<int> Eachpar { get; set; }
-
+    List<Player> Ties { get; set; }
     public Course current { get; set; }
 
     public void PrintCourses()
@@ -55,7 +53,8 @@ namespace golfcard.Models
           {
             Console.WriteLine($"Player {x + 1} Name: ");
             string name = Console.ReadLine();
-            Player newPlayer = new Player(name, Eachpar);
+            string newName = "";
+            Player newPlayer = new Player(name, newName, new List<int> { });
             Golfers.Add(newPlayer);
           }
         }
@@ -73,14 +72,24 @@ namespace golfcard.Models
     }
     public void HoleByHole()
     {
-      for (int i = 1; i < current.Pars.Count; i++)
+      for (int i = 1; i <= current.Pars.Count; i++)
       {
+        Console.Clear();
         Console.Write($"Hole: {i}\n");
         for (int x = 0; x < Golfers.Count; x++)
         {
           Console.Write($"Strokes for {Golfers[x].Name}: ");
           string strokes = Console.ReadLine();
-          Golfers[x].EachPar.Add(Int32.Parse(strokes));
+          if (Int32.TryParse(strokes, out int strokeno))
+          {
+            Golfers[x].EachPar.Add(strokeno);
+          }
+          else
+          {
+            Console.WriteLine("Invalid entry. Your entry must be an integer. Start over.");
+            Golfers.Clear();
+            return;
+          }
         }
         Console.Clear();
       }
@@ -89,12 +98,13 @@ namespace golfcard.Models
     public void WrapUp()
     {
       string list = "";
+      Console.Clear();
       Console.WriteLine(@$"{current.Name}");
-      Console.Write($"Par:      {list}");
       for (int i = 0; i < current.Pars.Count; i++)
       {
         list += $"{current.Pars[i]}  ";
       }
+      Console.Write($"Par:      {list}\n");
       for (int x = 0; x < Golfers.Count; x++)
       {
         string list2 = "";
@@ -102,21 +112,87 @@ namespace golfcard.Models
         {
           list2 += $"{Golfers[x].EachPar[y]}  ";
         }
-        Console.WriteLine($"{Golfers[x].Name}:  {list2}");
+        if (Golfers[x].Name.Count() > 7)
+        {
+          string newName = "";
+          for (int b = 0; b < 7; b++)
+          {
+            newName += Golfers[x].Name[b];
+          }
+          Golfers[x].NewName = newName;
+        }
+        switch (Golfers[x].Name.Count())
+        {
+          case > 7:
+            Console.WriteLine($"{Golfers[x].NewName}:  {list2}");
+            break;
+          case 7:
+            Console.WriteLine($"{Golfers[x].Name}:  {list2}");
+            break;
+          case 6:
+            Console.WriteLine($"{Golfers[x].Name}:   {list2}");
+            break;
+          case 5:
+            Console.WriteLine($"{Golfers[x].Name}:    {list2}");
+            break;
+          case 4:
+            Console.WriteLine($"{Golfers[x].Name}:     {list2}");
+            break;
+          case 3:
+            Console.WriteLine($"{Golfers[x].Name}:      {list2}");
+            break;
+          case 2:
+            Console.WriteLine($"{Golfers[x].Name}:       {list2}");
+            break;
+          case 1:
+            Console.WriteLine($"{Golfers[x].Name}:        {list2}");
+            break;
+        }
       }
       Console.WriteLine(@$"
-
-      Course Par: {current.TotalPar}");
+Course Par: {current.TotalPar}");
       for (int z = 0; z < Golfers.Count; z++)
       {
         Golfers[z].TotalScore = Golfers[z].StrokeTotal();
-        Console.Write($"{Golfers[z].Name}: {Golfers[z].TotalScore}");
+        Console.Write($"{Golfers[z].Name}: {Golfers[z].TotalScore}\n");
       }
+
+      Player win = Golfers[0];
+      for (int c = 1; c < Golfers.Count; c++)
+      {
+        if (Golfers[c].TotalScore < win.TotalScore)
+        {
+          win = Golfers[c];
+        }
+      }
+      Ties = Golfers.FindAll(g => g.TotalScore == win.TotalScore);
+      if (Ties.Count > 1)
+      {
+        string tieList = "";
+        for (int d = 0; d < Ties.Count; d++)
+        {
+          tieList += $"{Ties[d].Name} ";
+        }
+        Console.WriteLine($"Winners: {tieList}");
+      }
+      else
+      {
+        Console.WriteLine($"Winner: {win.Name}");
+      }
+    }
+
+    public void Reset()
+    {
+      Golfers.Clear();
+      return;
     }
     public Game()
     {
+      Ties = new List<Player>()
+      {
+
+      };
       current = new Course("", new List<int> { });
-      Eachpar = new List<int>() { };
       Courses = new List<Course>(){
         new Course("Mini PutPut", new List<int>{3, 5, 3, 2, 5, 4, 4, 2, 4, 3, 5, 7} ),
         new Course("Fox Hill Executive Course", new List<int>{3, 3, 4, 4, 3, 5, 4, 4, 3}),
